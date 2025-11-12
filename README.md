@@ -22,7 +22,7 @@ The comprehensive report, detailed infrastructure-as-code files, and full findin
 
 * **Cloud Infrastructure:** Building and managing core AWS networking components (VPC, Subnets, Internet Gateways).
 * **Infrastructure as Code (IaC):** Using **Terraform** to deploy, manage and tear down the entire cloud environment safely and repeatably.
-* **Offensive Operations:** Deploying a **Kali Linux** EC2 instance to execute reconnaissance and exploitation (Hydra, SQLi).
+* **Offensive Operations:** Deploying a **Ubuntu Server** EC2 instance to execute reconnaissance and exploitation (Hydra, SQLi).
 * **Cloud Incident Response:** Configuring and analyzing alerts from **CloudWatch Alarms** and forensic data from **VPC Flow Logs**.
 * **Security Architecture:** Implementing security best practices using **Security Groups** and **Network Access Control Lists (NACLs)**.
 * **Security Frameworks:** Mapping offensive and defensive actions to the **MITRE ATT&CK®** framework.
@@ -33,7 +33,7 @@ The comprehensive report, detailed infrastructure-as-code files, and full findin
 * **Infrastructure as Code:** Terraform
 * **Networking/Security:** AWS VPC, Security Groups, NACLs
 * **Monitoring/Defense:** CloudWatch Alarms, VPC Flow Logs, CloudTrail
-* **Offensive Tooling:** Kali Linux EC2 Instance, Hydra, cURL
+* **Offensive Tooling:** Ubuntu EC2 Instance, Hydra, cURL
 * **Frameworks:** MITRE ATT&CK®
 
 ---
@@ -55,16 +55,17 @@ This section visually confirms the infrastructure setup (IaC), the simulated att
 
 * **IaC Reference:** The Terraform configuration files for this VPC and resource deployment are available in the group repository: [https://github.com/tadiusfrank2001/AWS_SECURE_VPC](https://github.com/tadiusfrank2001/AWS_SECURE_VPC)
 * **Evidence: Terraform Apply Success (IaC):** The final output confirming the successful creation of all network and compute resources (VPC, Subnets, EC2 instances) via Terraform.
-    ![Terraform Apply Success Confirmation](screenshots/Terraform_Apply_Success(IaC).png)
+
+  ![Terraform Apply Success Confirmation](screenshots/Terraform_Apply_Success(IaC).png)
 
 ### 2. Offensive Operations: Simulated Compromise (Exploitation Focus)
 
-* **Evidence: Kali EC2: Version Check Attack:** Initial reconnaissance check on the application version, a common step before exploitation.
-    ![Kali EC2: Version Check Attack](screenshots/attack_app_version_check.png)
-* **Evidence: Kali EC2: SQL Injection via cURL:** Terminal output showing the execution of a SQL injection payload using the `curl` command, confirming a successful application layer exploitation against the target.
-    ![Kali EC2: SQL Injection via cURL](screenshots/sqli_curl.png)
-* **Evidence: Kali EC2: Hydra Brute-Force Attack:** Terminal output confirming the brute-force password attack was successfully launched from the Kali EC2 instance against a service on the target.
-    ![Kali EC2: Hydra Brute-Force Attack](screenshots/BFA_Hydra.png)
+* **Evidence: Ubuntu EC2: Version Check:** Initial check on the application version for Nmap and Hydra.
+    ![Ubuntu EC2: Version Check Attack](screenshots/attack_app_version_check.png)
+* **Evidence: Ubuntu EC2: SQL Injection via cURL:** Terminal output showing the execution of a SQL injection payload using the `curl` command, confirming a successful application layer exploitation against the target.
+    ![Ubuntu EC2: SQL Injection via cURL](screenshots/sqli_curl.png)
+* **Evidence: Kali EC2: Hydra Brute-Force Attack:** Terminal output confirming the brute-force password attack was successfully launched from the Ubuntu EC2 instance against a service on the target.
+    ![Ubuntu EC2: Hydra Brute-Force Attack](screenshots/BFA_Hydra.png)
 
 ### 3. Defensive Operations: Detection and Log Analysis
 
@@ -83,6 +84,7 @@ This section visually confirms the infrastructure setup (IaC), the simulated att
 * The project reinforced the value of **Infrastructure as Code (IaC)**, proving that complex environments can be provisioned and destroyed safely and cost-effectively.
 * Learning to configure **CloudWatch Alarms** and analyze high-volume data from **VPC Flow Logs** was critical to understanding the attack timeline and implementing automated defense.
 * Building a secure environment required careful configuration of **Security Groups** and **NACLs** to segment the network correctly.
+* Understanding budgeting and keeping EC2 instance within free tier utilization.
 
 ### Next Steps
 * Integrate a **serverless response function** (e.g., AWS Lambda) to automatically isolate a compromised EC2 instance upon receiving a high-severity CloudWatch/GuardDuty finding.
